@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 @Component
-public class JsonPlaceholderClient {
+public class JsonPlaceholderClient implements ExternalPostClient {
 	private static final Logger log = LoggerFactory.getLogger(JsonPlaceholderClient.class);
 
 	private final WebClient webClient;
