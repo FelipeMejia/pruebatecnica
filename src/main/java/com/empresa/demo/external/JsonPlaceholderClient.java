@@ -61,6 +61,11 @@ public class JsonPlaceholderClient implements ExternalPostClient {
 						return Mono.just(Collections.emptyList());
 					}
 
+					if (throwable instanceof WebClientResponseException wre
+							&& wre.getCause() instanceof ReadTimeoutException) {
+						return Mono.just(java.util.Collections.emptyList());
+					}
+
 					if (throwable instanceof ServerErrorException || (throwable instanceof WebClientResponseException w
 							&& w.getStatusCode().is5xxServerError())) {
 						log.warn(
